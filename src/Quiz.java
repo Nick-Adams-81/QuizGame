@@ -226,6 +226,46 @@ public class Quiz implements ActionListener {
 
     public void displayAnswer() {
 
+        button_a.setEnabled(false);
+        button_b.setEnabled(false);
+        button_c.setEnabled(false);
+        button_d.setEnabled(false);
+
+        if(answers[index] != 'A') {
+            answer_label_a.setForeground(new Color(255, 0, 0));
+        }
+        if(answers[index] != 'B') {
+            answer_label_b.setForeground(new Color(255, 0, 0));
+        }
+        if(answers[index] != 'C') {
+            answer_label_c.setForeground(new Color(255, 0, 0));
+        }
+        if(answers[index] != 'D') {
+            answer_label_d.setForeground(new Color(255, 0, 0));
+        }
+
+        Timer pause = new Timer(2000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                answer_label_a.setForeground(new Color(25, 255, 0));
+                answer_label_b.setForeground(new Color(25, 255, 0));
+                answer_label_c.setForeground(new Color(25, 255, 0));
+                answer_label_d.setForeground(new Color(25, 255, 0));
+
+                answer = ' ';
+                seconds = 10;
+                seconds_left.setText(String.valueOf(seconds));
+                button_a.setEnabled(true);
+                button_b.setEnabled(true);
+                button_c.setEnabled(true);
+                button_d.setEnabled(true);
+                index++;
+                nextQuestion();
+
+            }
+        });
+        pause.setRepeats(false);
+        pause.start();
     }
 
     public void results() {
