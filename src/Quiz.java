@@ -269,6 +269,23 @@ public class Quiz implements ActionListener {
     }
 
     public void results() {
+        button_a.setEnabled(false);
+        button_b.setEnabled(false);
+        button_c.setEnabled(false);
+        button_d.setEnabled(false);
 
+        result = (int)((correct_guesses / (double)total_questions) * 100);
+        textField.setText("RESULTS");
+        textArea.setText("");
+        answer_label_a.setText("");
+        answer_label_b.setText("");
+        answer_label_c.setText("");
+        answer_label_d.setText("");
+
+        number_right.setText("(" + correct_guesses + "/" + total_questions + ")");
+        percentage.setText(result + "%");
+
+        frame.add(percentage);
+        frame.add(number_right);
     }
 }
