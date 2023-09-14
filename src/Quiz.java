@@ -106,25 +106,21 @@ public class Quiz implements ActionListener {
         answer_label_a.setBackground(new Color(50, 50, 50));
         answer_label_a.setForeground(new Color(25, 255, 0));
         answer_label_a.setFont(new Font("MV Boli", Font.PLAIN, 35));
-        answer_label_a.setText("A test");
 
         answer_label_b.setBounds(125, 200, 500, 100);
         answer_label_b.setBackground(new Color(50, 50, 50));
         answer_label_b.setForeground(new Color(25, 255, 0));
         answer_label_b.setFont(new Font("MV Boli", Font.PLAIN, 35));
-        answer_label_b.setText("B test");
 
         answer_label_c.setBounds(125, 300, 500, 100);
         answer_label_c.setBackground(new Color(50, 50, 50));
         answer_label_c.setForeground(new Color(25, 255, 0));
         answer_label_c.setFont(new Font("MV Boli", Font.PLAIN, 35));
-        answer_label_c.setText("C test");
 
         answer_label_d.setBounds(125, 400, 500, 100);
         answer_label_d.setBackground(new Color(50, 50, 50));
         answer_label_d.setForeground(new Color(25, 255, 0));
         answer_label_d.setFont(new Font("MV Boli", Font.PLAIN, 35));
-        answer_label_d.setText("D test");
 
         seconds_left.setBounds(535, 510, 100, 100);
         seconds_left.setBackground(new Color(25, 25, 25));
@@ -135,6 +131,30 @@ public class Quiz implements ActionListener {
         seconds_left.setHorizontalAlignment(JTextField.CENTER);
         seconds_left.setText(String.valueOf(seconds));
 
+        time_label.setBounds(535, 475, 100, 25);
+        time_label.setBackground(new Color(50, 50, 50));
+        time_label.setForeground(new Color(255, 0, 0));
+        time_label.setFont(new Font("MV Boli", Font.PLAIN, 20));
+        time_label.setHorizontalAlignment(JTextField.CENTER);
+        time_label.setText("Time Left");
+
+        number_right.setBounds(225, 225, 200, 100);
+        number_right.setBackground(new Color(25, 25, 25));
+        number_right.setForeground(new Color(25, 255, 0));
+        number_right.setFont(new Font("Ink Free", Font.PLAIN, 50));
+        number_right.setBorder(BorderFactory.createBevelBorder(1));
+        number_right.setHorizontalAlignment(JTextField.CENTER);
+        number_right.setEditable(false);
+
+        percentage.setBounds(225, 325, 200, 100);
+        percentage.setBackground(new Color(25, 25, 25));
+        percentage.setForeground(new Color(25, 255, 0));
+        percentage.setFont(new Font("Ink Free", Font.PLAIN, 50));
+        percentage.setBorder(BorderFactory.createBevelBorder(1));
+        percentage.setHorizontalAlignment(JTextField.CENTER);
+        percentage.setEditable(false);
+
+        frame.add(time_label);
         frame.add(seconds_left);
         frame.add(answer_label_a);
         frame.add(answer_label_b);
@@ -147,9 +167,21 @@ public class Quiz implements ActionListener {
         frame.add(textField);
         frame.add(textArea);
         frame.setVisible(true);
+        nextQuestion();
     }
 
     public void nextQuestion() {
+        if(index >= total_questions) {
+            results();
+        } else {
+            textField.setText("Question " + (index + 1));
+            textArea.setText(questions[index]);
+            answer_label_a.setText(options[index][0]);
+            answer_label_b.setText(options[index][1]);
+            answer_label_c.setText(options[index][2]);
+            answer_label_d.setText(options[index][3]);
+
+        }
 
     }
 
