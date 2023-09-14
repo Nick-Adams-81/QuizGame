@@ -52,6 +52,14 @@ public class Quiz implements ActionListener {
     JTextField number_right = new JTextField();
     JTextField percentage = new JTextField();
 
+    Timer timer = new Timer(1000, e -> {
+        seconds--;
+        seconds_left.setText(String.valueOf(seconds));
+        if(seconds <= 0) {
+            displayAnswer();
+        }
+    });
+
 
     public Quiz() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -180,7 +188,7 @@ public class Quiz implements ActionListener {
             answer_label_b.setText(options[index][1]);
             answer_label_c.setText(options[index][2]);
             answer_label_d.setText(options[index][3]);
-
+            timer.start();
         }
 
     }
@@ -226,6 +234,7 @@ public class Quiz implements ActionListener {
 
     public void displayAnswer() {
 
+        timer.stop();
         button_a.setEnabled(false);
         button_b.setEnabled(false);
         button_c.setEnabled(false);
@@ -244,25 +253,22 @@ public class Quiz implements ActionListener {
             answer_label_d.setForeground(new Color(255, 0, 0));
         }
 
-        Timer pause = new Timer(2000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                answer_label_a.setForeground(new Color(25, 255, 0));
-                answer_label_b.setForeground(new Color(25, 255, 0));
-                answer_label_c.setForeground(new Color(25, 255, 0));
-                answer_label_d.setForeground(new Color(25, 255, 0));
+        Timer pause = new Timer(2000, e -> {
+            answer_label_a.setForeground(new Color(25, 255, 0));
+            answer_label_b.setForeground(new Color(25, 255, 0));
+            answer_label_c.setForeground(new Color(25, 255, 0));
+            answer_label_d.setForeground(new Color(25, 255, 0));
 
-                answer = ' ';
-                seconds = 10;
-                seconds_left.setText(String.valueOf(seconds));
-                button_a.setEnabled(true);
-                button_b.setEnabled(true);
-                button_c.setEnabled(true);
-                button_d.setEnabled(true);
-                index++;
-                nextQuestion();
+            answer = ' ';
+            seconds = 10;
+            seconds_left.setText(String.valueOf(seconds));
+            button_a.setEnabled(true);
+            button_b.setEnabled(true);
+            button_c.setEnabled(true);
+            button_d.setEnabled(true);
+            index++;
+            nextQuestion();
 
-            }
         });
         pause.setRepeats(false);
         pause.start();
