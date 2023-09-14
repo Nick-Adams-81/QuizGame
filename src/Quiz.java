@@ -9,7 +9,7 @@ public class Quiz implements ActionListener {
             "Which company created Java?",
             "Which year was Java created?",
             "What was Java originally called?",
-            "Who is credited with creating Java?"
+            "Who is credited with creating Java?",
     };
 
     String[][] options = {
@@ -26,7 +26,6 @@ public class Quiz implements ActionListener {
             'C'
     };
 
-    char guess;
     char answer;
     int index;
     int correct_guesses = 0;
